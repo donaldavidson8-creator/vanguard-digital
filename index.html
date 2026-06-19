@@ -239,15 +239,16 @@
       .step__node { position: static; margin-bottom: 0.95rem; }
     }
 
-    /* ============================== TRUST STRIP ============================== */
-    .trust { border-top: 1px solid var(--line); padding-block: clamp(2.25rem, 4vw, 3rem); }
-    .trust__inner { display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
-    .trust__item { display: flex; align-items: center; gap: 1rem; }
-    .trust__icon { width: 2.7rem; height: 2.7rem; border-radius: 11px; border: 1px solid rgba(198, 161, 91, 0.28); background: rgba(198, 161, 91, 0.07); color: var(--gold); display: grid; place-items: center; flex-shrink: 0; }
-    .trust__icon svg { width: 1.35rem; height: 1.35rem; }
-    .trust__item strong { display: block; color: var(--fg); font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
-    .trust__item span { font-size: 0.86rem; color: var(--muted); }
-    @media (min-width: 760px) { .trust__inner { grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 3rem); } }
+    /* ============================== TRUST ============================== */
+    .trust { border-top: 1px solid var(--line); text-align: center; }
+    .trust__title { font-size: clamp(1.5rem, 3.4vw, 2.2rem); font-weight: 700; color: var(--fg); letter-spacing: -0.02em; }
+    .trust__list { list-style: none; margin-top: clamp(1.6rem, 3vw, 2.4rem); display: flex; flex-direction: column; gap: 1.1rem; align-items: center; }
+    .trust__list li { display: inline-flex; align-items: center; gap: 0.7rem; color: var(--faint); font-size: 1.05rem; font-weight: 500; }
+    .trust__list svg { width: 1.3rem; height: 1.3rem; color: var(--gold); flex-shrink: 0; }
+    @media (min-width: 720px) { .trust__list { flex-direction: row; justify-content: center; gap: clamp(2rem, 5vw, 4rem); } }
+
+    /* ============================== SERVICES CTA ============================== */
+    .services-cta { text-align: center; margin-top: clamp(2rem, 4vw, 3.25rem); }
 
     /* ============================== CTA BAND ============================== */
     .cta-band { border-top: 1px solid var(--line); text-align: center; background: radial-gradient(65% 120% at 50% 0%, rgba(198, 161, 91, 0.09), transparent 70%); }
@@ -389,7 +390,7 @@
           <p class="hero__sub reveal" style="--d:.2s">Designed to impress. Built to perform. Engineered to grow.</p>
           <p class="hero__lead reveal" style="--d:.26s">We help ambitious Irish businesses turn visitors into customers through premium web design, local SEO, and intelligent automation.</p>
           <div class="hero__cta reveal" style="--d:.32s">
-            <a href="#contact" class="btn btn--gold">Book Your Free Consultation
+            <a href="#contact" class="btn btn--gold">Book Free Consultation
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
             </a>
             <a href="#services" class="btn btn--ghost">View Services</a>
@@ -434,23 +435,22 @@
           </li>
         </ol>
       </div>
+      <div class="container services-cta reveal">
+        <a href="#contact" class="btn btn--gold btn--lg">Book Free Consultation
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+        </a>
+      </div>
     </section>
 
-    <!-- ============================== TRUST STRIP ============================== -->
-    <section class="trust" aria-label="Why Irish businesses trust Vanguard Digital">
-      <div class="container trust__inner">
-        <div class="trust__item reveal">
-          <span class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg></span>
-          <div><strong>Trusted by Irish Businesses</strong><span>A growing portfolio of local brands.</span></div>
-        </div>
-        <div class="trust__item reveal" style="--d:.08s">
-          <span class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg></span>
-          <div><strong>Delivery on Every Project</strong><span>Every build completed, start to finish.</span></div>
-        </div>
-        <div class="trust__item reveal" style="--d:.16s">
-          <span class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg></span>
-          <div><strong>Fast Turnaround</strong><span>Launched in weeks, not months.</span></div>
-        </div>
+    <!-- ============================== TRUST ============================== -->
+    <section class="section trust">
+      <div class="container">
+        <h2 class="trust__title reveal">Trusted by Irish Businesses</h2>
+        <ul class="trust__list">
+          <li class="reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>Delivery On Every Project</li>
+          <li class="reveal" style="--d:.08s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>Fast Turnaround</li>
+          <li class="reveal" style="--d:.16s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>Results-Focused Approach</li>
+        </ul>
       </div>
     </section>
 
@@ -534,7 +534,7 @@
         <p class="eyebrow reveal">Start Today</p>
         <h2 class="h2 reveal" style="--d:.05s">Ready to grow your business online?</h2>
         <p class="lead reveal" style="--d:.1s">No cost, no obligation — just a clear conversation about where your website could take you.</p>
-        <a href="#contact" class="btn btn--gold btn--lg reveal" style="--d:.15s">Book Your Free Consultation
+        <a href="#contact" class="btn btn--gold btn--lg reveal" style="--d:.15s">Book Free Consultation
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
         </a>
       </div>
@@ -583,7 +583,7 @@
               <label for="message">Message</label>
               <textarea id="message" name="message" rows="4" required placeholder="Tell us about your project and goals…"></textarea>
             </div>
-            <button type="submit" class="btn btn--gold form__btn" id="submitBtn"><span id="submitText">Book Your Free Consultation</span></button>
+            <button type="submit" class="btn btn--gold form__btn" id="submitBtn"><span id="submitText">Book Free Consultation</span></button>
             <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
           </form>
         </div>
@@ -663,8 +663,8 @@
       try {
         const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
         if (res.ok) { form.reset(); setStatus("Thank you — we'll be in touch within one business day.", true); submitText.textContent = 'Message Sent'; }
-        else { setStatus('Something went wrong. Please email hello@vanguarddigital.ie.', false); submitText.textContent = 'Book Your Free Consultation'; submitBtn.disabled = false; }
-      } catch (err) { setStatus('Network error. Please email hello@vanguarddigital.ie.', false); submitText.textContent = 'Book Your Free Consultation'; submitBtn.disabled = false; }
+        else { setStatus('Something went wrong. Please email hello@vanguarddigital.ie.', false); submitText.textContent = 'Book Free Consultation'; submitBtn.disabled = false; }
+      } catch (err) { setStatus('Network error. Please email hello@vanguarddigital.ie.', false); submitText.textContent = 'Book Free Consultation'; submitBtn.disabled = false; }
     });
   </script>
 </body>
