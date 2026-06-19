@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Vanguard Digital — High-Converting Websites for Irish Businesses</title>
+  <meta name="description" content="Vanguard Digital builds premium, high-converting websites for ambitious Irish businesses. Web design, local SEO, and intelligent automation engineered to grow." />
+  <meta name="theme-color" content="#050505" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://vanguarddigital.ie/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Vanguard Digital — High-Converting Websites for Irish Businesses" />
+  <meta property="og:description" content="Premium web design, local SEO, and intelligent automation for ambitious Irish businesses." />
+  <meta property="og:locale" content="en_IE" />
+  <meta property="og:image" content="assets/logo.png" />
+
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================== TOKENS ============================== */
+    :root {
+      --bg: #050505;
+      --surface: #111111;
+      --surface-2: #171717;
+      --fg: #F5F5F5;
+      --muted: #A8A8A8;
+      --faint: #cfcfcf;
+      --gold: #C6A15B;
+      --gold-soft: #D8B97A;
+      --line: rgba(255, 255, 255, 0.09);
+      --line-strong: rgba(255, 255, 255, 0.16);
+      --maxw: 1180px;
+      --pad: clamp(1.25rem, 4vw, 2.5rem);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --r: 16px;
+      color-scheme: dark;
+    }
+
+    /* ============================== RESET ============================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--muted);
+      font-family: 'Satoshi', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+    ::selection { background: rgba(198, 161, 91, 0.3); color: #fff; }
+
+    ::-webkit-scrollbar { width: 11px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 99px; border: 3px solid var(--bg); }
+    ::-webkit-scrollbar-thumb:hover { background: #2e2e2e; }
+
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+    /* ============================== LAYOUT ============================== */
+    .container { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--pad); }
+    .section { padding-block: clamp(3.5rem, 8vw, 6.25rem); position: relative; }
+    .section--alt { background: linear-gradient(180deg, transparent, rgba(17, 17, 17, 0.55) 12%, rgba(17, 17, 17, 0.55) 88%, transparent); border-block: 1px solid var(--line); }
+
+    /* ============================== TYPE ============================== */
+    .eyebrow {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); }
+
+    .h1 {
+      font-size: clamp(2.6rem, 6.4vw, 5rem);
+      line-height: 1.03;
+      letter-spacing: -0.025em;
+      font-weight: 700;
+      color: var(--fg);
+    }
+    .h2 {
+      font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+      line-height: 1.07;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      color: var(--fg);
+    }
+    .h3 { font-size: 1.3rem; line-height: 1.25; font-weight: 600; color: var(--fg); letter-spacing: -0.01em; }
+    .lead { font-size: clamp(1.05rem, 1.5vw, 1.2rem); color: var(--muted); max-width: 46ch; }
+    .section-head { margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem); }
+    .section-head .h2 { margin-top: 1.1rem; }
+    .section-head .lead { margin-top: 1.25rem; }
+
+    /* ============================== BUTTONS ============================== */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+      padding: 0.95rem 1.7rem; border-radius: 99px; font-size: 0.92rem; font-weight: 600;
+      transition: transform 0.35s var(--ease), background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s, filter 0.3s;
+      white-space: nowrap; cursor: pointer;
+    }
+    .btn svg { width: 1rem; height: 1rem; transition: transform 0.35s var(--ease); }
+    .btn--gold { background: var(--gold); color: #0a0a0a; box-shadow: 0 0 0 1px rgba(198, 161, 91, 0.4); }
+    .btn--gold:hover { background: var(--gold-soft); filter: brightness(1.04); transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 40px rgba(198, 161, 91, 0.28); }
+    .btn--gold:hover svg { transform: translateX(4px); }
+    .btn--ghost { border: 1px solid var(--line-strong); color: var(--fg); }
+    .btn--ghost:hover { border-color: rgba(255, 255, 255, 0.45); background: rgba(255, 255, 255, 0.05); transform: translateY(-2px) scale(1.02); }
+    .btn--sm { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
+    .btn:active { transform: translateY(0) scale(0.99); }
+
+    /* ============================== AMBIENT ============================== */
+    .grain::after {
+      content: ""; position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    #cursorLight {
+      position: fixed; top: 0; left: 0; z-index: 2; width: 520px; height: 520px; margin: -260px 0 0 -260px;
+      border-radius: 50%; pointer-events: none; opacity: 0; transition: opacity 0.8s ease; will-change: transform;
+      background: radial-gradient(circle, rgba(198, 161, 91, 0.06), transparent 60%);
+    }
+
+    /* ============================== NAVBAR ============================== */
+    .nav { position: fixed; inset: 0 0 auto 0; z-index: 40; transition: background-color 0.5s, border-color 0.5s, backdrop-filter 0.5s; border-bottom: 1px solid transparent; }
+    .nav.is-scrolled { background: rgba(5, 5, 5, 0.72); backdrop-filter: blur(16px); border-bottom-color: var(--line); }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; padding-block: 1.1rem; }
+    .brand { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'Space Grotesk', monospace; font-size: 0.82rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg); font-weight: 500; }
+    .brand__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); transition: transform 0.3s; }
+    .brand:hover .brand__dot { transform: scale(1.3); }
+    .brand__logo { height: 1.6rem; width: auto; display: block; transition: transform 0.3s var(--ease); }
+    .brand:hover .brand__logo { transform: scale(1.08); }
+    .nav__links { display: flex; align-items: center; gap: 2.2rem; }
+    .nav__links a:not(.btn) { font-size: 0.9rem; color: var(--muted); transition: color 0.25s; }
+    .nav__links a:not(.btn):hover { color: var(--fg); }
+    .nav__toggle { display: none; padding: 0.5rem; color: var(--fg); }
+    .nav__mobile { display: none; }
+
+    /* ============================== HERO ============================== */
+    .hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
+    .hero__media { position: absolute; top: 0; right: 0; bottom: 0; width: 50%; z-index: 0; }
+    .hero__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; animation: kenburns 26s ease-in-out infinite alternate; }
+    @keyframes kenburns { from { transform: scale(1.02); } to { transform: scale(1.12); } }
+    .hero__media::before {
+      content: ""; position: absolute; inset: 0; z-index: 1;
+      background:
+        linear-gradient(90deg, var(--bg) 0%, rgba(5, 5, 5, 0.78) 38%, rgba(5, 5, 5, 0.22) 72%, rgba(5, 5, 5, 0.5) 100%),
+        linear-gradient(180deg, rgba(5, 5, 5, 0.5), transparent 25%, transparent 70%, rgba(5, 5, 5, 0.55));
+    }
+    .hero__glow { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(45% 50% at 25% 35%, rgba(198, 161, 91, 0.10), transparent 70%); animation: breathe 9s ease-in-out infinite; }
+    @keyframes breathe { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
+    .hero__content { position: relative; z-index: 3; width: 100%; padding-block: clamp(6.5rem, 12vh, 8.5rem) clamp(2.25rem, 4.5vh, 3.5rem); }
+    .hero__inner { max-width: 620px; }
+    .hero__logo { width: clamp(150px, 20vw, 196px); height: auto; margin-bottom: 1.8rem; }
+    .hero .eyebrow { margin-bottom: 1.6rem; }
+    .hero__sub { margin-top: 1.7rem; font-size: clamp(1.1rem, 1.7vw, 1.4rem); font-weight: 500; color: var(--faint); }
+    .hero__lead { margin-top: 1.4rem; font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--muted); max-width: 40ch; }
+    .hero__cta { margin-top: 2.6rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+
+    /* Headline mask reveal */
+    .mask { display: block; overflow: hidden; padding-bottom: 0.04em; }
+    .mask > span { display: block; transform: translateY(115%); transition: transform 0.7s var(--ease); transition-delay: var(--d, 0s); }
+    .mask.in > span { transform: translateY(0); }
+    .h1 .mask:last-child > span { color: var(--muted); }
+
+    /* ============================== REVEAL SYSTEM ============================== */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s var(--ease), transform 0.55s var(--ease); transition-delay: var(--d, 0s); will-change: opacity, transform; }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal--img { opacity: 0; transition: opacity 0.7s ease; }
+    .reveal--img img { transform: scale(1.08); transition: transform 0.9s var(--ease); }
+    .reveal--img.in { opacity: 1; }
+    .reveal--img.in img { transform: scale(1); }
+
+    /* ============================== SERVICES (editorial list) ============================== */
+    #services { padding-top: clamp(1.5rem, 3.5vw, 2.5rem); }
+    .services { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 4vw, 3.5rem); }
+    .services__list { list-style: none; }
+    .srv {
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: clamp(1.2rem, 3vw, 2.5rem);
+      padding: clamp(1.6rem, 3.2vw, 2.4rem) 0; border-top: 1px solid var(--line);
+      transition: padding-left 0.4s var(--ease);
+    }
+    .srv:last-child { border-bottom: 1px solid var(--line); }
+    .srv__idx { font-family: 'Space Grotesk', monospace; font-size: clamp(1.5rem, 3vw, 2.1rem); color: #4a4a4a; transition: color 0.4s; font-weight: 500; }
+    .srv__body h3 { margin-bottom: 0.5rem; transition: color 0.3s; }
+    .srv__body p { color: var(--muted); max-width: 52ch; font-size: 0.98rem; }
+    .srv__arrow { width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1px solid var(--line-strong); display: grid; place-items: center; color: var(--muted); transition: all 0.4s var(--ease); flex-shrink: 0; }
+    .srv__arrow svg { width: 1.1rem; height: 1.1rem; }
+    .srv:hover { padding-left: clamp(0.5rem, 1.5vw, 1.4rem); }
+    .srv:hover .srv__idx { color: var(--gold); }
+    .srv:hover .srv__body h3 { color: var(--gold-soft); }
+    .srv:hover .srv__arrow { border-color: var(--gold); color: var(--gold); transform: rotate(-45deg); }
+    @media (min-width: 900px) {
+      .services { grid-template-columns: 0.85fr 1.15fr; align-items: start; }
+      .services__head { position: sticky; top: 7rem; }
+    }
+
+    /* ============================== WHY (values band) ============================== */
+    .why__grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+    .why__item { padding: clamp(1.8rem, 3vw, 2.2rem) 0; border-top: 1px solid var(--line); }
+    .why__icon { width: 2.9rem; height: 2.9rem; border-radius: 12px; border: 1px solid rgba(198, 161, 91, 0.25); background: rgba(198, 161, 91, 0.07); color: var(--gold); display: grid; place-items: center; margin-bottom: 1.4rem; }
+    .why__icon svg { width: 1.4rem; height: 1.4rem; }
+    .why__item h3 { margin-bottom: 0.6rem; }
+    .why__item p { color: var(--muted); font-size: 0.98rem; }
+    @media (min-width: 760px) {
+      .why__grid { grid-template-columns: repeat(3, 1fr); gap: clamp(2rem, 4vw, 3.5rem); }
+      .why__item { border-top: 0; border-left: 1px solid var(--line); padding: 0 0 0 clamp(1.5rem, 2.5vw, 2.2rem); }
+    }
+
+    /* ============================== PROCESS (timeline) ============================== */
+    .process { position: relative; }
+    .process__track, .progress-bar { display: none; }
+    .process__steps { list-style: none; display: grid; grid-template-columns: 1fr; gap: 1.35rem; position: relative; }
+    .step { position: relative; padding-left: 3.4rem; }
+    .step__node { position: absolute; left: 0; top: 0; width: 2.4rem; height: 2.4rem; border-radius: 50%; border: 1px solid rgba(198, 161, 91, 0.45); background: var(--bg); color: var(--gold); display: grid; place-items: center; font-family: 'Space Grotesk', monospace; font-size: 0.8rem; z-index: 1; }
+    .step__label { font-family: 'Space Grotesk', monospace; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+    .step h3 { margin: 0.3rem 0 0.35rem; font-size: 1.2rem; }
+    .step p { color: var(--muted); max-width: 48ch; font-size: 0.95rem; line-height: 1.55; }
+    .process__rail { position: absolute; left: 1.2rem; top: 0.7rem; bottom: 0.7rem; width: 1px; background: var(--line); }
+    .process__rail-fill { position: absolute; left: 1.2rem; top: 0.7rem; width: 1px; height: calc(100% - 1.4rem); background: linear-gradient(180deg, var(--gold), rgba(198, 161, 91, 0.15)); transform: scaleY(0); transform-origin: top; transition: transform 0.9s var(--ease); }
+    .process__rail-fill.in { transform: scaleY(1); }
+    @media (min-width: 820px) {
+      .process__rail, .process__rail-fill { display: none; }
+      .process__track { display: block; position: absolute; left: 0; right: 0; top: 1.2rem; height: 1px; background: var(--line); }
+      .progress-bar { display: block; position: absolute; left: 0; right: 0; top: 1.2rem; height: 1px; background: linear-gradient(90deg, var(--gold), rgba(198, 161, 91, 0.2)); transform: scaleX(0); transform-origin: left; transition: transform 0.9s var(--ease); }
+      .progress-bar.in { transform: scaleX(1); }
+      .process__steps { grid-template-columns: repeat(3, 1fr); gap: clamp(1.25rem, 3vw, 2.25rem); }
+      .step { padding-left: 0; }
+      .step__node { position: static; margin-bottom: 0.95rem; }
+    }
+
+    /* ============================== CONTACT ============================== */
+    .contact { overflow: hidden; }
+    .contact__bg { position: absolute; inset: 0; z-index: 0; }
+    .contact__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+    .contact__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5, 5, 5, 0.96) 0%, rgba(5, 5, 5, 0.58) 24%, rgba(5, 5, 5, 0.5) 58%, rgba(5, 5, 5, 0.82) 100%), linear-gradient(90deg, rgba(5, 5, 5, 0.85) 0%, rgba(5, 5, 5, 0.45) 55%, rgba(5, 5, 5, 0.18) 100%); }
+    .contact .container { position: relative; z-index: 2; }
+    .contact__grid { display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 5vw, 4rem); align-items: center; }
+    .contact__copy .h2 { margin: 1.1rem 0 1.4rem; }
+    .contact__details { margin-top: 2.2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .contact__detail { display: inline-flex; align-items: center; gap: 0.9rem; color: var(--faint); transition: color 0.3s; }
+    .contact__detail:hover { color: var(--fg); }
+    .contact__detail span { width: 2.6rem; height: 2.6rem; border-radius: 10px; border: 1px solid var(--line); display: grid; place-items: center; color: var(--gold); transition: border-color 0.3s; flex-shrink: 0; }
+    .contact__detail:hover span { border-color: rgba(198, 161, 91, 0.45); }
+    .contact__detail svg { width: 1.15rem; height: 1.15rem; }
+
+    .card { background: rgba(17, 17, 17, 0.72); backdrop-filter: blur(14px); border: 1px solid var(--line); border-radius: var(--r); padding: clamp(1.6rem, 3.5vw, 2.6rem); }
+    .form-row { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
+    .field { margin-bottom: 1.2rem; }
+    .field label { display: block; font-size: 0.85rem; color: var(--faint); margin-bottom: 0.5rem; font-weight: 500; }
+    .field input, .field textarea {
+      width: 100%; padding: 0.85rem 1rem; border-radius: 10px; border: 1px solid var(--line-strong);
+      background: rgba(5, 5, 5, 0.6); color: var(--fg); font: inherit; font-size: 0.95rem;
+      transition: border-color 0.25s, box-shadow 0.25s; resize: vertical;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: #6f6f6f; }
+    .field input:focus, .field textarea:focus { outline: none; border-color: rgba(198, 161, 91, 0.6); box-shadow: 0 0 0 3px rgba(198, 161, 91, 0.14); }
+    .form__btn { width: 100%; margin-top: 0.4rem; }
+    .form__status { margin-top: 1rem; text-align: center; font-size: 0.9rem; display: none; }
+    .form__status.show { display: block; }
+    .form__status.ok { color: var(--gold); }
+    .form__status.err { color: #e98b8b; }
+    @media (min-width: 640px) { .form-row { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 980px) { .contact__grid { grid-template-columns: 1fr 1fr; } }
+
+    /* ============================== FOOTER ============================== */
+    .footer { border-top: 1px solid var(--line); padding-block: clamp(3rem, 6vw, 4rem); position: relative; z-index: 3; }
+    .footer__top { display: flex; flex-direction: column; gap: 2rem; justify-content: space-between; }
+    .footer__tag { margin-top: 1rem; color: var(--muted); font-size: 0.92rem; max-width: 30ch; }
+    .footer__links { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer__links a { color: var(--muted); font-size: 0.9rem; transition: color 0.25s; }
+    .footer__links a:hover { color: var(--fg); }
+    .footer__bottom { margin-top: 2.5rem; padding-top: 1.8rem; border-top: 1px solid var(--line); font-size: 0.8rem; color: #8a8a8a; }
+    @media (min-width: 720px) { .footer__top { flex-direction: row; align-items: center; } }
+
+    /* ============================== SKIP LINK ============================== */
+    .skip { position: absolute; left: -999px; top: 0; z-index: 60; }
+    .skip:focus { left: 1rem; top: 1rem; background: var(--gold); color: #0a0a0a; padding: 0.6rem 1rem; border-radius: 8px; }
+
+    /* ============================== MOBILE NAV + RESPONSIVE HERO ============================== */
+    @media (max-width: 860px) {
+      .nav__links { display: none; }
+      .nav__toggle { display: inline-flex; }
+      .nav__mobile { display: flex; flex-direction: column; position: fixed; inset: 0; z-index: 39; background: rgba(5, 5, 5, 0.98); backdrop-filter: blur(20px); opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-14px); transition: opacity 0.4s var(--ease), transform 0.5s var(--ease), visibility 0.4s; padding: 6rem var(--pad) 2rem; }
+      .nav__mobile.open { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); }
+      .nav__mobile a:not(.btn) { display: block; font-size: 1.6rem; color: var(--fg); padding: 1rem 0; border-bottom: 1px solid var(--line); letter-spacing: -0.01em; }
+      .nav__mobile .btn { margin-top: 2rem; width: 100%; }
+
+      .hero__media { width: 100%; }
+      .hero__media::before {
+        background: linear-gradient(180deg, rgba(5, 5, 5, 0.65) 0%, rgba(5, 5, 5, 0.35) 30%, rgba(5, 5, 5, 0.85) 75%, var(--bg) 100%);
+      }
+      .hero { align-items: flex-end; }
+      .hero__logo { display: none; }
+      .hero__content { padding-block: 7rem 2rem; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45); }
+      .hero__inner { max-width: 100%; }
+      .hero__cta { flex-direction: column; }
+      .hero__cta .btn { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal, .reveal--img, .reveal--img img, .mask > span, .progress-bar, .process__rail-fill { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .hero__img { animation: none; }
+      .hero__glow { animation: none; opacity: 0.85; }
+      * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+    }
+  </style>
+</head>
+
+<body class="grain">
+  <a href="#hero" class="skip">Skip to content</a>
+  <div id="cursorLight" aria-hidden="true"></div>
+
+  <!-- ============================== NAVBAR ============================== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="#hero" class="brand"><img class="brand__logo" src="assets/logo-mark.png" width="168" height="128" alt="" /> Vanguard&nbsp;Digital</a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#why">About</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="btn btn--gold btn--sm">Book Consultation</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" /></svg>
+      </button>
+    </div>
+    <div class="nav__mobile" id="navMobile">
+      <a href="#services" class="m-link">Services</a>
+      <a href="#why" class="m-link">About</a>
+      <a href="#process" class="m-link">Process</a>
+      <a href="#contact" class="m-link">Contact</a>
+      <a href="#contact" class="btn btn--gold m-link">Book Consultation</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============================== HERO ============================== -->
+    <section class="hero" id="hero">
+      <div class="hero__media">
+        <img class="hero__img" src="assets/hero.jpg" width="880" height="1760" fetchpriority="high"
+             alt="A glass luxury tower glowing from within, overlooking the city skyline at dusk" />
+      </div>
+      <div class="hero__glow" aria-hidden="true"></div>
+
+      <div class="hero__content container">
+        <div class="hero__inner">
+          <img class="hero__logo reveal" src="assets/logo-cropped.png" width="513" height="464" alt="Vanguard Digital" />
+          <p class="eyebrow reveal" style="--d:.05s">Premium Web Design · Ireland</p>
+          <h1 class="h1">
+            <span class="mask" style="--d:.05s"><span>High-Converting Websites</span></span>
+            <span class="mask" style="--d:.13s"><span>For Irish Businesses</span></span>
+          </h1>
+          <p class="hero__sub reveal" style="--d:.2s">Designed to impress. Built to perform. Engineered to grow.</p>
+          <p class="hero__lead reveal" style="--d:.26s">We help ambitious Irish businesses turn visitors into customers through premium web design, local SEO, and intelligent automation.</p>
+          <div class="hero__cta reveal" style="--d:.32s">
+            <a href="#contact" class="btn btn--gold">Book Free Consultation
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+            </a>
+            <a href="#services" class="btn btn--ghost">View Services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== SERVICES ============================== -->
+    <section class="section" id="services">
+      <div class="container services">
+        <div class="services__head">
+          <p class="eyebrow reveal">What We Do</p>
+          <h2 class="h2 reveal" style="--d:.05s">Services</h2>
+          <p class="lead reveal" style="--d:.1s">Three disciplines, one outcome — a digital presence that earns trust and generates business.</p>
+        </div>
+
+        <ol class="services__list">
+          <li class="srv reveal">
+            <span class="srv__idx">01</span>
+            <div class="srv__body">
+              <h3 class="h3">Web Design</h3>
+              <p>Custom-built websites designed to build trust, improve conversions, and elevate your online presence.</p>
+            </div>
+            <span class="srv__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg></span>
+          </li>
+          <li class="srv reveal" style="--d:.06s">
+            <span class="srv__idx">02</span>
+            <div class="srv__body">
+              <h3 class="h3">SEO &amp; Lead Generation</h3>
+              <p>Local SEO strategies designed to help businesses rank higher and attract qualified customers.</p>
+            </div>
+            <span class="srv__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg></span>
+          </li>
+          <li class="srv reveal" style="--d:.12s">
+            <span class="srv__idx">03</span>
+            <div class="srv__body">
+              <h3 class="h3">Digital Growth Systems</h3>
+              <p>Intelligent automation and AI-assisted workflows that quietly handle the busywork — freeing your time for the decisions that actually move the business forward.</p>
+            </div>
+            <span class="srv__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg></span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================== WHY VANGUARD ============================== -->
+    <section class="section section--alt" id="why">
+      <div class="container">
+        <div class="section-head" style="max-width: 40rem;">
+          <p class="eyebrow reveal">The Difference</p>
+          <h2 class="h2 reveal" style="--d:.05s">Why Vanguard</h2>
+          <p class="lead reveal" style="--d:.1s">Three reasons ambitious businesses choose to build with us.</p>
+        </div>
+
+        <div class="why__grid">
+          <div class="why__item reveal">
+            <div class="why__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" /></svg></div>
+            <h3 class="h3">Fast Delivery</h3>
+            <p>Efficient workflows and business automation allow us to launch projects quickly — without ever sacrificing quality.</p>
+          </div>
+          <div class="why__item reveal" style="--d:.08s">
+            <div class="why__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg></div>
+            <h3 class="h3">Hassle Free</h3>
+            <p>Built using bespoke design methods, so you don't have to worry about a thing — we handle design, build, and launch from end to end.</p>
+          </div>
+          <div class="why__item reveal" style="--d:.16s">
+            <div class="why__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.63 8.41m5.96 5.96a14.92 14.92 0 0 1-5.84 2.58m-.12-8.54a6 6 0 0 0-7.38 5.84h4.8m2.58-5.84a14.93 14.93 0 0 0-2.58 5.84m2.7 2.7a14.4 14.4 0 0 1-.31.06 15.1 15.1 0 0 1-2.45-2.45 14.6 14.6 0 0 1 .06-.31m-2.24 2.39a4.49 4.49 0 0 0-1.76 4.31 4.49 4.49 0 0 0 4.31-1.76M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" /></svg></div>
+            <h3 class="h3">Results-Focused</h3>
+            <p>Every website is designed with one goal in mind: generating more enquiries, leads, and customers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== PROCESS ============================== -->
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-head" style="max-width: 40rem;">
+          <p class="eyebrow reveal">How We Work</p>
+          <h2 class="h2 reveal" style="--d:.05s">Our Process</h2>
+          <p class="lead reveal" style="--d:.1s">A clear, considered path from first conversation to a website that performs.</p>
+        </div>
+
+        <div class="process">
+          <div class="process__track" aria-hidden="true"></div>
+          <div class="progress-bar" aria-hidden="true"></div>
+          <div class="process__rail" aria-hidden="true"></div>
+          <div class="process__rail-fill" aria-hidden="true"></div>
+
+          <ol class="process__steps">
+            <li class="step reveal">
+              <div class="step__node">01</div>
+              <span class="step__label">Step One</span>
+              <h3 class="h3">Discovery</h3>
+              <p>Understanding your business, goals, customers, and competitive landscape.</p>
+            </li>
+            <li class="step reveal" style="--d:.1s">
+              <div class="step__node">02</div>
+              <span class="step__label">Step Two</span>
+              <h3 class="h3">Design</h3>
+              <p>Creating a modern digital presence tailored precisely to your brand.</p>
+            </li>
+            <li class="step reveal" style="--d:.2s">
+              <div class="step__node">03</div>
+              <span class="step__label">Step Three</span>
+              <h3 class="h3">Launch</h3>
+              <p>Deploying a fast, secure, SEO-ready website that drives real results.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== CONTACT ============================== -->
+    <section class="section contact" id="contact">
+      <div class="contact__bg reveal--img" aria-hidden="true">
+        <img src="assets/contact.jpg" width="1600" height="900" loading="lazy" alt="" />
+      </div>
+      <div class="container">
+        <div class="contact__grid">
+          <div class="contact__copy">
+            <p class="eyebrow reveal">Get In Touch</p>
+            <h2 class="h2 reveal" style="--d:.05s">Let's Build Something Exceptional</h2>
+            <p class="lead reveal" style="--d:.1s">Book a free consultation and discover how Vanguard Digital can help your business grow online.</p>
+            <div class="contact__details reveal" style="--d:.16s">
+              <a href="mailto:hello@vanguarddigital.ie" class="contact__detail">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg></span>
+                hello@vanguarddigital.ie
+              </a>
+              <div class="contact__detail">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg></span>
+                Serving businesses across Ireland
+              </div>
+            </div>
+          </div>
+
+          <form class="card reveal" style="--d:.1s" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <!-- FORMSPREE: replace YOUR_FORM_ID above with your form ID from formspree.io -->
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" required autocomplete="name" placeholder="Your full name" />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@business.ie" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="business">Business Name</label>
+              <input id="business" name="business" type="text" autocomplete="organization" placeholder="Your business" />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" required placeholder="Tell us about your project and goals…"></textarea>
+            </div>
+            <button type="submit" class="btn btn--gold form__btn" id="submitBtn"><span id="submitText">Book Free Consultation</span></button>
+            <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="#hero" class="brand"><span class="brand__dot"></span> Vanguard&nbsp;Digital</a>
+          <p class="footer__tag">High-Converting Websites for Irish Businesses.</p>
+        </div>
+        <nav class="footer__links" aria-label="Footer">
+          <a href="#services">Services</a>
+          <a href="#why">About</a>
+          <a href="#process">Process</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div class="footer__bottom">© <span id="year"></span> Vanguard Digital. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Navbar scroll state
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Mobile menu
+    const toggle = document.getElementById('navToggle');
+    const mobile = document.getElementById('navMobile');
+    const setMenu = (open) => { mobile.classList.toggle('open', open); toggle.setAttribute('aria-expanded', String(open)); document.body.style.overflow = open ? 'hidden' : ''; };
+    toggle.addEventListener('click', () => setMenu(!mobile.classList.contains('open')));
+    mobile.querySelectorAll('.m-link').forEach((l) => l.addEventListener('click', () => setMenu(false)));
+
+    // Reveal system
+    const animated = document.querySelectorAll('.reveal, .reveal--img, .mask, .progress-bar, .process__rail-fill');
+    if (prefersReduced || !('IntersectionObserver' in window)) {
+      animated.forEach((el) => el.classList.add('in'));
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+      animated.forEach((el) => io.observe(el));
+      // Hero (above the fold) fires immediately
+      requestAnimationFrame(() => document.querySelectorAll('.hero .mask, .hero .reveal').forEach((el) => el.classList.add('in')));
+    }
+
+    // Cursor-following ambient light
+    const cursorLight = document.getElementById('cursorLight');
+    if (cursorLight && window.matchMedia('(pointer: fine)').matches && !prefersReduced) {
+      let tx = innerWidth / 2, ty = innerHeight / 2, cx = tx, cy = ty, shown = false;
+      addEventListener('pointermove', (e) => { tx = e.clientX; ty = e.clientY; if (!shown) { cursorLight.style.opacity = '1'; shown = true; } }, { passive: true });
+      (function loop() { cx += (tx - cx) * 0.1; cy += (ty - cy) * 0.1; cursorLight.style.transform = `translate3d(${cx}px,${cy}px,0)`; requestAnimationFrame(loop); })();
+    }
+
+    // Contact form (Formspree async)
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const submitText = document.getElementById('submitText');
+    const status = document.getElementById('formStatus');
+    const setStatus = (msg, ok) => { status.textContent = msg; status.className = 'form__status show ' + (ok ? 'ok' : 'err'); };
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (form.action.includes('YOUR_FORM_ID')) { setStatus('Form not connected yet — add your Formspree ID to enable submissions.', false); return; }
+      submitBtn.disabled = true; submitText.textContent = 'Sending…';
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        if (res.ok) { form.reset(); setStatus("Thank you — we'll be in touch within one business day.", true); submitText.textContent = 'Message Sent'; }
+        else { setStatus('Something went wrong. Please email hello@vanguarddigital.ie.', false); submitText.textContent = 'Book Free Consultation'; submitBtn.disabled = false; }
+      } catch (err) { setStatus('Network error. Please email hello@vanguarddigital.ie.', false); submitText.textContent = 'Book Free Consultation'; submitBtn.disabled = false; }
+    });
+  </script>
+</body>
+</html>
