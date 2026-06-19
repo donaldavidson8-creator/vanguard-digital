@@ -229,15 +229,33 @@
     .process__rail { position: absolute; left: 1.2rem; top: 0.7rem; bottom: 0.7rem; width: 1px; background: var(--line); }
     .process__rail-fill { position: absolute; left: 1.2rem; top: 0.7rem; width: 1px; height: calc(100% - 1.4rem); background: linear-gradient(180deg, var(--gold), rgba(198, 161, 91, 0.15)); transform: scaleY(0); transform-origin: top; transition: transform 0.9s var(--ease); }
     .process__rail-fill.in { transform: scaleY(1); }
-    @media (min-width: 820px) {
+    @media (min-width: 1000px) {
       .process__rail, .process__rail-fill { display: none; }
       .process__track { display: block; position: absolute; left: 0; right: 0; top: 1.2rem; height: 1px; background: var(--line); }
-      .progress-bar { display: block; position: absolute; left: 0; right: 0; top: 1.2rem; height: 1px; background: linear-gradient(90deg, var(--gold), rgba(198, 161, 91, 0.2)); transform: scaleX(0); transform-origin: left; transition: transform 0.9s var(--ease); }
+      .progress-bar { display: block; position: absolute; left: 0; right: 0; top: 1.2rem; height: 1px; background: linear-gradient(90deg, var(--gold), rgba(198, 161, 91, 0.25), rgba(198, 161, 91, 0.12)); transform: scaleX(0); transform-origin: left; transition: transform 1.1s var(--ease); }
       .progress-bar.in { transform: scaleX(1); }
-      .process__steps { grid-template-columns: repeat(3, 1fr); gap: clamp(1.25rem, 3vw, 2.25rem); }
+      .process__steps { grid-template-columns: repeat(4, 1fr); gap: clamp(1.25rem, 2.5vw, 2rem); }
       .step { padding-left: 0; }
       .step__node { position: static; margin-bottom: 0.95rem; }
     }
+
+    /* ============================== TRUST STRIP ============================== */
+    .trust { border-top: 1px solid var(--line); padding-block: clamp(2.25rem, 4vw, 3rem); }
+    .trust__inner { display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
+    .trust__item { display: flex; align-items: center; gap: 1rem; }
+    .trust__icon { width: 2.7rem; height: 2.7rem; border-radius: 11px; border: 1px solid rgba(198, 161, 91, 0.28); background: rgba(198, 161, 91, 0.07); color: var(--gold); display: grid; place-items: center; flex-shrink: 0; }
+    .trust__icon svg { width: 1.35rem; height: 1.35rem; }
+    .trust__item strong { display: block; color: var(--fg); font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
+    .trust__item span { font-size: 0.86rem; color: var(--muted); }
+    @media (min-width: 760px) { .trust__inner { grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 3rem); } }
+
+    /* ============================== CTA BAND ============================== */
+    .cta-band { border-top: 1px solid var(--line); text-align: center; background: radial-gradient(65% 120% at 50% 0%, rgba(198, 161, 91, 0.09), transparent 70%); }
+    .cta-band__inner { max-width: 42rem; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+    .cta-band .h2 { margin: 0; }
+    .cta-band .lead { max-width: 40ch; }
+    .cta-band .btn { margin-top: 0.7rem; }
+    .btn--lg { padding: 1.1rem 2.3rem; font-size: 1rem; }
 
     /* ============================== CONTACT ============================== */
     .contact { overflow: hidden; }
@@ -308,6 +326,11 @@
       .hero__cta .btn { width: 100%; }
     }
 
+    @media (max-width: 430px) {
+      .brand { font-size: 0.72rem; letter-spacing: 0.12em; gap: 0.5rem; }
+      .brand__logo { height: 1.4rem; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .reveal, .reveal--img, .reveal--img img, .mask > span, .progress-bar, .process__rail-fill { opacity: 1 !important; transform: none !important; transition: none !important; }
@@ -366,7 +389,7 @@
           <p class="hero__sub reveal" style="--d:.2s">Designed to impress. Built to perform. Engineered to grow.</p>
           <p class="hero__lead reveal" style="--d:.26s">We help ambitious Irish businesses turn visitors into customers through premium web design, local SEO, and intelligent automation.</p>
           <div class="hero__cta reveal" style="--d:.32s">
-            <a href="#contact" class="btn btn--gold">Book Free Consultation
+            <a href="#contact" class="btn btn--gold">Book Your Free Consultation
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
             </a>
             <a href="#services" class="btn btn--ghost">View Services</a>
@@ -410,6 +433,24 @@
             <span class="srv__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg></span>
           </li>
         </ol>
+      </div>
+    </section>
+
+    <!-- ============================== TRUST STRIP ============================== -->
+    <section class="trust" aria-label="Why Irish businesses trust Vanguard Digital">
+      <div class="container trust__inner">
+        <div class="trust__item reveal">
+          <span class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg></span>
+          <div><strong>Trusted by Irish Businesses</strong><span>A growing portfolio of local brands.</span></div>
+        </div>
+        <div class="trust__item reveal" style="--d:.08s">
+          <span class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg></span>
+          <div><strong>Delivery on Every Project</strong><span>Every build completed, start to finish.</span></div>
+        </div>
+        <div class="trust__item reveal" style="--d:.16s">
+          <span class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg></span>
+          <div><strong>Fast Turnaround</strong><span>Launched in weeks, not months.</span></div>
+        </div>
       </div>
     </section>
 
@@ -460,24 +501,42 @@
           <ol class="process__steps">
             <li class="step reveal">
               <div class="step__node">01</div>
-              <span class="step__label">Step One</span>
-              <h3 class="h3">Discovery</h3>
-              <p>Understanding your business, goals, customers, and competitive landscape.</p>
+              <span class="step__label">Phase One</span>
+              <h3 class="h3">Strategy</h3>
+              <p>We map your goals, customers, and market — defining the positioning and plan before a pixel is drawn.</p>
             </li>
-            <li class="step reveal" style="--d:.1s">
+            <li class="step reveal" style="--d:.08s">
               <div class="step__node">02</div>
-              <span class="step__label">Step Two</span>
+              <span class="step__label">Phase Two</span>
               <h3 class="h3">Design</h3>
-              <p>Creating a modern digital presence tailored precisely to your brand.</p>
+              <p>A bespoke, conversion-focused design crafted around your brand and your customer's journey.</p>
             </li>
-            <li class="step reveal" style="--d:.2s">
+            <li class="step reveal" style="--d:.16s">
               <div class="step__node">03</div>
-              <span class="step__label">Step Three</span>
+              <span class="step__label">Phase Three</span>
               <h3 class="h3">Launch</h3>
-              <p>Deploying a fast, secure, SEO-ready website that drives real results.</p>
+              <p>We deploy a fast, secure, SEO-ready website — tested across every device and ready to perform.</p>
+            </li>
+            <li class="step reveal" style="--d:.24s">
+              <div class="step__node">04</div>
+              <span class="step__label">Phase Four</span>
+              <h3 class="h3">Growth</h3>
+              <p>Post-launch optimisation, local SEO, and automation that keep the enquiries coming long after go-live.</p>
             </li>
           </ol>
         </div>
+      </div>
+    </section>
+
+    <!-- ============================== CTA BAND ============================== -->
+    <section class="section cta-band" aria-label="Book a free consultation">
+      <div class="container cta-band__inner">
+        <p class="eyebrow reveal">Start Today</p>
+        <h2 class="h2 reveal" style="--d:.05s">Ready to grow your business online?</h2>
+        <p class="lead reveal" style="--d:.1s">No cost, no obligation — just a clear conversation about where your website could take you.</p>
+        <a href="#contact" class="btn btn--gold btn--lg reveal" style="--d:.15s">Book Your Free Consultation
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+        </a>
       </div>
     </section>
 
@@ -524,7 +583,7 @@
               <label for="message">Message</label>
               <textarea id="message" name="message" rows="4" required placeholder="Tell us about your project and goals…"></textarea>
             </div>
-            <button type="submit" class="btn btn--gold form__btn" id="submitBtn"><span id="submitText">Book Free Consultation</span></button>
+            <button type="submit" class="btn btn--gold form__btn" id="submitBtn"><span id="submitText">Book Your Free Consultation</span></button>
             <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
           </form>
         </div>
@@ -604,8 +663,8 @@
       try {
         const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
         if (res.ok) { form.reset(); setStatus("Thank you — we'll be in touch within one business day.", true); submitText.textContent = 'Message Sent'; }
-        else { setStatus('Something went wrong. Please email hello@vanguarddigital.ie.', false); submitText.textContent = 'Book Free Consultation'; submitBtn.disabled = false; }
-      } catch (err) { setStatus('Network error. Please email hello@vanguarddigital.ie.', false); submitText.textContent = 'Book Free Consultation'; submitBtn.disabled = false; }
+        else { setStatus('Something went wrong. Please email hello@vanguarddigital.ie.', false); submitText.textContent = 'Book Your Free Consultation'; submitBtn.disabled = false; }
+      } catch (err) { setStatus('Network error. Please email hello@vanguarddigital.ie.', false); submitText.textContent = 'Book Your Free Consultation'; submitBtn.disabled = false; }
     });
   </script>
 </body>
