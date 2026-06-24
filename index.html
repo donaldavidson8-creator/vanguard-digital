@@ -91,6 +91,7 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
     img { display: block; max-width: 100%; height: auto; }
     a { color: inherit; text-decoration: none; }
@@ -123,7 +124,7 @@
     .eyebrow::before { content: ""; width: 28px; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); }
 
     .h1 {
-      font-size: clamp(2.6rem, 6.4vw, 5rem);
+      font-size: clamp(2.3rem, 6.4vw, 5rem);
       line-height: 1.03;
       letter-spacing: -0.025em;
       font-weight: 700;
@@ -181,23 +182,37 @@
     .nav__links { display: flex; align-items: center; gap: 2.2rem; }
     .nav__links a:not(.btn) { font-size: 0.9rem; color: var(--muted); transition: color 0.25s; }
     .nav__links a:not(.btn):hover { color: var(--fg); }
-    .nav__toggle { display: none; padding: 0.5rem; color: var(--fg); }
+    .nav__toggle { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; color: var(--fg); }
     .nav__mobile { display: none; }
 
     /* ============================== HERO ============================== */
-    .hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
-    .hero__media { position: absolute; top: 0; right: 0; bottom: 0; width: 50%; z-index: 0; }
-    .hero__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; animation: kenburns 26s ease-in-out infinite alternate; }
-    @keyframes kenburns { from { transform: scale(1.02); } to { transform: scale(1.12); } }
-    .hero__media::before {
-      content: ""; position: absolute; inset: 0; z-index: 1;
+    /* Shared page backdrop: building image from the top down to just above Contact */
+    .stage { position: relative; }
+    .stage > section { position: relative; z-index: 1; }
+    .stage__bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+    .stage__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; animation: stageBreathe 22s ease-in-out infinite alternate; will-change: transform; }
+    @keyframes stageBreathe { from { transform: scale(1.02); } to { transform: scale(1.075); } }
+    /* Mid-page image band (between Process and the CTA) */
+    .imageband { position: relative; height: clamp(300px, 46vh, 500px); overflow: hidden; }
+    .imageband__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; animation: stageBreathe 22s ease-in-out infinite alternate; will-change: transform; }
+    .imageband::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg) 0%, rgba(5, 5, 5, 0.55) 24%, rgba(5, 5, 5, 0.5) 76%, var(--bg) 100%); }
+    .stage__bg::after {
+      content: ""; position: absolute; inset: 0;
       background:
-        linear-gradient(90deg, var(--bg) 0%, rgba(5, 5, 5, 0.78) 38%, rgba(5, 5, 5, 0.22) 72%, rgba(5, 5, 5, 0.5) 100%),
-        linear-gradient(180deg, rgba(5, 5, 5, 0.5), transparent 25%, transparent 70%, rgba(5, 5, 5, 0.55));
+        linear-gradient(90deg, rgba(5, 5, 5, 0.85) 0%, rgba(5, 5, 5, 0.72) 30%, rgba(5, 5, 5, 0.42) 56%, rgba(5, 5, 5, 0.16) 78%, rgba(5, 5, 5, 0.34) 100%),
+        linear-gradient(180deg, rgba(5, 5, 5, 0.22) 0%, rgba(5, 5, 5, 0.18) 42%, rgba(5, 5, 5, 0.5) 76%, rgba(5, 5, 5, 0.98) 100%);
     }
-    .hero__glow { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(45% 50% at 25% 35%, rgba(198, 161, 91, 0.10), transparent 70%); animation: breathe 9s ease-in-out infinite; }
+    .hero {
+      position: relative; z-index: 1; min-height: 100vh; min-height: 100svh;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .hero__glow { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(55% 62% at 24% 42%, rgba(198, 161, 91, 0.16), transparent 72%); animation: breathe 9s ease-in-out infinite; }
     @keyframes breathe { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
-    .hero__content { position: relative; z-index: 3; width: 100%; padding-block: clamp(6.5rem, 12vh, 8.5rem) clamp(2.25rem, 4.5vh, 3.5rem); }
+    .hero__content { position: relative; z-index: 3; width: 100%; padding-block: clamp(6.5rem, 12vh, 8.5rem) clamp(2.25rem, 4.5vh, 3.5rem); text-shadow: 0 2px 28px rgba(0, 0, 0, 0.5); }
+    /* Trim hero left deadspace on wide screens (box is capped here, so no overflow) */
+    @media (min-width: 1240px) {
+      .hero__content { margin-left: max(0px, calc((100% - var(--maxw)) / 2 - 2rem)); margin-right: auto; }
+    }
     .hero__inner { max-width: 620px; }
     .hero__logo { width: clamp(150px, 20vw, 196px); height: auto; display: block; animation: logoSmoke 2.1s var(--ease) 0.15s both; }
 
@@ -384,10 +399,7 @@
       .nav__mobile a:not(.btn) { display: block; font-size: 1.6rem; color: var(--fg); padding: 1rem 0; border-bottom: 1px solid var(--line); letter-spacing: -0.01em; }
       .nav__mobile .btn { margin-top: 2rem; width: 100%; }
 
-      .hero__media { width: 100%; }
-      .hero__media::before {
-        background: linear-gradient(180deg, rgba(5, 5, 5, 0.65) 0%, rgba(5, 5, 5, 0.35) 30%, rgba(5, 5, 5, 0.85) 75%, var(--bg) 100%);
-      }
+      .stage__img { object-position: 56% 50%; }
       .hero { align-items: flex-end; }
       .logo-smoke { display: none; }
       .hero__content { padding-block: 7rem 2rem; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45); }
@@ -443,11 +455,11 @@
   </header>
 
   <main id="main">
+    <div class="stage">
     <!-- ============================== HERO ============================== -->
     <section class="hero" id="hero">
-      <div class="hero__media">
-        <img class="hero__img" src="assets/hero.jpg" width="880" height="1760" fetchpriority="high"
-             alt="A glass luxury tower glowing from within, overlooking the city skyline at dusk" />
+      <div class="stage__bg" aria-hidden="true">
+        <img class="stage__img" src="assets/hero.jpg" width="1920" height="1041" fetchpriority="high" alt="" />
       </div>
       <div class="hero__glow" aria-hidden="true"></div>
       <div class="hero__smoke" aria-hidden="true">
@@ -607,6 +619,11 @@
       </div>
     </section>
 
+    <!-- ============================== IMAGE BAND ============================== -->
+    <div class="imageband">
+      <img class="imageband__img" src="assets/band.jpg" width="1600" height="945" loading="lazy" alt="" />
+    </div>
+
     <!-- ============================== CTA BAND ============================== -->
     <section class="section cta-band" aria-label="Book a free consultation">
       <div class="container cta-band__inner">
@@ -618,6 +635,7 @@
         </a>
       </div>
     </section>
+    </div><!-- /.stage -->
 
     <!-- ============================== CONTACT ============================== -->
     <section class="section contact" id="contact">
