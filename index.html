@@ -8,19 +8,50 @@
   <meta name="description" content="Vanguard Digital builds premium, high-converting websites for ambitious Irish businesses. Web design, local SEO, and intelligent automation engineered to grow." />
   <meta name="theme-color" content="#050505" />
   <meta name="robots" content="index, follow" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="author" content="Vanguard Digital" />
   <link rel="canonical" href="https://vanguarddigital.ie/" />
+
+  <!-- Icons & manifest -->
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vanguard Digital" />
+  <meta property="og:url" content="https://vanguarddigital.ie/" />
   <meta property="og:title" content="Vanguard Digital — High-Converting Websites for Irish Businesses" />
   <meta property="og:description" content="Premium web design, local SEO, and intelligent automation for ambitious Irish businesses." />
   <meta property="og:locale" content="en_IE" />
-  <meta property="og:image" content="assets/og.jpg" />
+  <meta property="og:image" content="https://vanguarddigital.ie/assets/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Vanguard Digital — Building Websites. Driving Growth." />
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Vanguard Digital — High-Converting Websites for Irish Businesses" />
   <meta name="twitter:description" content="Premium web design, local SEO, and intelligent automation for ambitious Irish businesses." />
-  <meta name="twitter:image" content="assets/og.jpg" />
+  <meta name="twitter:image" content="https://vanguarddigital.ie/assets/og.jpg" />
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Vanguard Digital",
+    "description": "Premium web design, local SEO, and intelligent automation for ambitious Irish businesses.",
+    "url": "https://vanguarddigital.ie/",
+    "image": "https://vanguarddigital.ie/assets/og.jpg",
+    "logo": "https://vanguarddigital.ie/assets/logo.png",
+    "email": "ceo.vanguarddigital@gmail.com",
+    "areaServed": { "@type": "Country", "name": "Ireland" },
+    "serviceType": ["Web Design", "Local SEO", "Lead Generation", "Digital Automation"],
+    "slogan": "High-Converting Websites for Irish Businesses"
+  }
+  </script>
 
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -140,7 +171,7 @@
 
     /* ============================== NAVBAR ============================== */
     .nav { position: fixed; inset: 0 0 auto 0; z-index: 40; transition: background-color 0.5s, border-color 0.5s, backdrop-filter 0.5s; border-bottom: 1px solid transparent; }
-    .nav.is-scrolled { background: rgba(5, 5, 5, 0.72); backdrop-filter: blur(16px); border-bottom-color: var(--line); }
+    .nav.is-scrolled { background: rgba(5, 5, 5, 0.72); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-bottom-color: var(--line); }
     .nav__inner { display: flex; align-items: center; justify-content: space-between; padding-block: 1.1rem; }
     .brand { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'Space Grotesk', monospace; font-size: 0.82rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg); font-weight: 500; }
     .brand__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); transition: transform 0.3s; }
@@ -154,7 +185,7 @@
     .nav__mobile { display: none; }
 
     /* ============================== HERO ============================== */
-    .hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
+    .hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
     .hero__media { position: absolute; top: 0; right: 0; bottom: 0; width: 50%; z-index: 0; }
     .hero__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; animation: kenburns 26s ease-in-out infinite alternate; }
     @keyframes kenburns { from { transform: scale(1.02); } to { transform: scale(1.12); } }
@@ -168,7 +199,38 @@
     @keyframes breathe { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
     .hero__content { position: relative; z-index: 3; width: 100%; padding-block: clamp(6.5rem, 12vh, 8.5rem) clamp(2.25rem, 4.5vh, 3.5rem); }
     .hero__inner { max-width: 620px; }
-    .hero__logo { width: clamp(150px, 20vw, 196px); height: auto; margin-bottom: 1.8rem; }
+    .hero__logo { width: clamp(150px, 20vw, 196px); height: auto; display: block; animation: logoSmoke 2.1s var(--ease) 0.15s both; }
+
+    /* Logo emerging from smoke */
+    .logo-smoke { position: relative; display: inline-block; margin-bottom: 1.8rem; }
+    .logo-smoke::before {
+      content: ""; position: absolute; left: 50%; top: 56%; width: 135%; height: 135%;
+      transform: translate(-50%, -50%); z-index: -1; pointer-events: none;
+      background: radial-gradient(closest-side, rgba(224, 206, 168, 0.4), rgba(198, 161, 91, 0.14) 45%, transparent 72%);
+      filter: blur(22px);
+      animation: logoPuff 2.8s var(--ease) both;
+    }
+    @keyframes logoSmoke {
+      0%   { opacity: 0; filter: blur(26px); transform: scale(1.16) translateY(8px); }
+      55%  { opacity: 1; }
+      100% { opacity: 1; filter: blur(0); transform: none; }
+    }
+    @keyframes logoPuff {
+      0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.55); }
+      35%  { opacity: 1; }
+      100% { opacity: 0; transform: translate(-50%, -64%) scale(1.6); }
+    }
+
+    /* Drifting smoke behind the hero */
+    .hero__smoke { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+    .smoke { position: absolute; border-radius: 50%; filter: blur(48px); opacity: 0; will-change: transform; }
+    .smoke--1 { width: 46vw; height: 46vw; left: -8%; top: 6%; background: radial-gradient(circle, rgba(198, 161, 91, 0.16), transparent 68%); animation: smokeFade 4s ease-out 0.3s forwards, drift1 22s ease-in-out 0.3s infinite; }
+    .smoke--2 { width: 40vw; height: 40vw; left: 16%; top: 34%; background: radial-gradient(circle, rgba(176, 154, 120, 0.12), transparent 70%); animation: smokeFade 4.5s ease-out 0.6s forwards, drift2 28s ease-in-out 0.6s infinite; }
+    .smoke--3 { width: 32vw; height: 32vw; left: -6%; bottom: -8%; background: radial-gradient(circle, rgba(198, 161, 91, 0.11), transparent 72%); animation: smokeFade 5s ease-out 0.9s forwards, drift3 25s ease-in-out 0.9s infinite; }
+    @keyframes smokeFade { to { opacity: 1; } }
+    @keyframes drift1 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(8%, -6%) scale(1.12); } }
+    @keyframes drift2 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-10%, 5%) scale(1.18); } }
+    @keyframes drift3 { 0%, 100% { transform: translate(0, 0) scale(1.05); } 50% { transform: translate(12%, -8%) scale(0.92); } }
     .hero .eyebrow { margin-bottom: 1.6rem; }
     .hero__sub { margin-top: 1.7rem; font-size: clamp(1.1rem, 1.7vw, 1.4rem); font-weight: 500; color: var(--faint); }
     .hero__lead { margin-top: 1.4rem; font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--muted); max-width: 40ch; }
@@ -280,7 +342,7 @@
     .contact__detail:hover span { border-color: rgba(198, 161, 91, 0.45); }
     .contact__detail svg { width: 1.15rem; height: 1.15rem; }
 
-    .card { background: rgba(17, 17, 17, 0.72); backdrop-filter: blur(14px); border: 1px solid var(--line); border-radius: var(--r); padding: clamp(1.6rem, 3.5vw, 2.6rem); }
+    .card { background: rgba(17, 17, 17, 0.72); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid var(--line); border-radius: var(--r); padding: clamp(1.6rem, 3.5vw, 2.6rem); }
     .form-row { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
     .field { margin-bottom: 1.2rem; }
     .field label { display: block; font-size: 0.85rem; color: var(--faint); margin-bottom: 0.5rem; font-weight: 500; }
@@ -317,7 +379,7 @@
     @media (max-width: 860px) {
       .nav__links { display: none; }
       .nav__toggle { display: inline-flex; }
-      .nav__mobile { display: flex; flex-direction: column; position: fixed; inset: 0; z-index: 39; background: rgba(5, 5, 5, 0.98); backdrop-filter: blur(20px); opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-14px); transition: opacity 0.4s var(--ease), transform 0.5s var(--ease), visibility 0.4s; padding: 6rem var(--pad) 2rem; }
+      .nav__mobile { display: flex; flex-direction: column; position: fixed; inset: 0; z-index: 39; background: rgba(5, 5, 5, 0.98); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-14px); transition: opacity 0.4s var(--ease), transform 0.5s var(--ease), visibility 0.4s; padding: 6rem var(--pad) 2rem; }
       .nav__mobile.open { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); }
       .nav__mobile a:not(.btn) { display: block; font-size: 1.6rem; color: var(--fg); padding: 1rem 0; border-bottom: 1px solid var(--line); letter-spacing: -0.01em; }
       .nav__mobile .btn { margin-top: 2rem; width: 100%; }
@@ -327,7 +389,7 @@
         background: linear-gradient(180deg, rgba(5, 5, 5, 0.65) 0%, rgba(5, 5, 5, 0.35) 30%, rgba(5, 5, 5, 0.85) 75%, var(--bg) 100%);
       }
       .hero { align-items: flex-end; }
-      .hero__logo { display: none; }
+      .logo-smoke { display: none; }
       .hero__content { padding-block: 7rem 2rem; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45); }
       .hero__inner { max-width: 100%; }
       .hero__cta { flex-direction: column; }
@@ -344,6 +406,9 @@
       .reveal, .reveal--img, .reveal--img img, .mask > span, .progress-bar, .process__rail-fill { opacity: 1 !important; transform: none !important; transition: none !important; }
       .hero__img { animation: none; }
       .hero__glow { animation: none; opacity: 0.85; }
+      .hero__smoke { display: none; }
+      .hero__logo { opacity: 1 !important; filter: none !important; transform: none !important; }
+      .logo-smoke::before { display: none; }
       * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
     }
   </style>
@@ -385,10 +450,17 @@
              alt="A glass luxury tower glowing from within, overlooking the city skyline at dusk" />
       </div>
       <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__smoke" aria-hidden="true">
+        <span class="smoke smoke--1"></span>
+        <span class="smoke smoke--2"></span>
+        <span class="smoke smoke--3"></span>
+      </div>
 
       <div class="hero__content container">
         <div class="hero__inner">
-          <img class="hero__logo reveal" src="assets/logo-cropped.png" width="513" height="464" alt="Vanguard Digital" />
+          <span class="logo-smoke">
+            <img class="hero__logo" src="assets/logo-cropped.png" width="513" height="464" alt="Vanguard Digital" />
+          </span>
           <p class="eyebrow reveal" style="--d:.05s">Premium Web Design · Ireland</p>
           <h1 class="h1">
             <span class="mask" style="--d:.05s"><span>High-Converting Websites</span></span>
